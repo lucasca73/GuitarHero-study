@@ -1,1 +1,1 @@
-Project developed under (CutiaEngine)[https://github.com/CutiaGames/CutiaEngine]
+Project developed under [CutiaEngine](https://github.com/CutiaGames/CutiaEngine)
