@@ -4,16 +4,17 @@
 
 using std::string;
 
+int touchLimit = 500;
+int touchRange = 20;
+
 void GuitarTrack::addNewNoteAtTop(){
 
-    GameObject* note = new GameObject();
+    NoteObject* note = new NoteObject();
     note->x = 100 + 100*this->pos;
     note->y = 0;
 
     //Adding image
-    Component* image = new Image("circle.png");
-
-    note->addComponent(image);
+    note->setupImage("circle.png","circle_green.png","circle_red.png");
 
     notes.push_back(note);
 }
@@ -36,22 +37,26 @@ void GuitarTrack::update(){
     
     if (Game::getInstance().buttonDown(this->key)){
         didClicked = true;
-        printf("Click received.\n");
     }
 
-    for (auto e_obj : notes) {
-
-        e_obj->y += this->speed; // Dev purposes
+    for (NoteObject* e_obj : notes) {
+        
+        e_obj->speed = 5;
+        e_obj->update();
 
         if( didClicked ){
+            
+            int touchZone = abs(e_obj->y - touchLimit);
 
-            if ( abs(e_obj->y - 600) < 20 ){
-                e_obj->x += 100;
-                e_obj->y = 400;
+            // note touched is inside touchZone range
+            if ( touchZone < touchRange ){
+                e_obj->gotHitted();
             }
         }
 
-        if (e_obj->y > 700){
+        //note passed away
+        if (e_obj->y > touchLimit){
+            e_obj->gotMissed();
             //remove obj from vector
         }
     }

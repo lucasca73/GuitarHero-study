@@ -2,6 +2,7 @@
 #define GUITARTRACK
 
 #include "GameObject.hpp"
+#include "NoteObject.hpp"
 #include <string>
 #include <vector>
 
@@ -10,12 +11,12 @@ using std::string;
 class GuitarTrack : public GameObject{
 
     private:
-        vector<GameObject*> notes;
+        vector<NoteObject*> notes;
         int pos = 0;
         string key;
 
     public:
-        GuitarTrack(){ notes = vector<GameObject*>(); }
+        GuitarTrack(){ notes = vector<NoteObject*>(); }
         string name;
         int speed = 5;
 

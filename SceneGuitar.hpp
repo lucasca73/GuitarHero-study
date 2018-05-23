@@ -12,7 +12,6 @@ class SceneGuitar : public Scene{
 
     private:
         vector<GuitarTrack*> tracks;
-        
         int ticks;
         void createNewNoteAtTop();
 
