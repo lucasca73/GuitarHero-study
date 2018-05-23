@@ -14,6 +14,8 @@ class SceneGuitar : public Scene{
         vector<GuitarTrack*> tracks;
         int ticks;
         void createNewNoteAtTop();
+        void setupNotes(string path);
+        int counter = 100;
 
     public:
         void setup();

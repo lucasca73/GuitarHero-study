@@ -4,14 +4,25 @@
 
 using std::string;
 
-int touchLimit = 500;
-int touchRange = 20;
+int touchLimit = 510;
+int touchRange = 50;
+
+void GuitarTrack::addNewNoteAtTick(int tick){
+    NoteObject* note = new NoteObject();
+    note->x = 200 + 90*pos;
+    note->y = -(tick/3);
+
+    //Adding image
+    note->setupImage("circle.png","circle_green.png","circle_red.png");
+
+    notes.push_back(note);
+}
 
 void GuitarTrack::addNewNoteAtTop(){
 
     NoteObject* note = new NoteObject();
-    note->x = 100 + 100*this->pos;
-    note->y = 0;
+    note->x = 200 + 90*pos;
+    note->y = -100;
 
     //Adding image
     note->setupImage("circle.png","circle_green.png","circle_red.png");
@@ -23,12 +34,21 @@ void GuitarTrack::setupKeyAndPosition(string key, int pos){
     this->pos = pos;
     this->key = key;
     this->name = "Track 1";
+
+    button = new GameObject();
+    button->x = 200 + 90*pos;
+    button->y = 490;
+
+    Image* baseButtonImage = new Image("circle.png");
+
+    button->addComponent(baseButtonImage);
 }
 
 void GuitarTrack::render(){
     for (auto e_obj : notes) {
         e_obj->render();
     }
+    button->render();
 }
 
 void GuitarTrack::update(){
@@ -41,7 +61,7 @@ void GuitarTrack::update(){
 
     for (NoteObject* e_obj : notes) {
         
-        e_obj->speed = 5;
+        e_obj->speed = this->speed;
         e_obj->update();
 
         if( didClicked ){

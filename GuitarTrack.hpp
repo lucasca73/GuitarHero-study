@@ -14,12 +14,14 @@ class GuitarTrack : public GameObject{
         vector<NoteObject*> notes;
         int pos = 0;
         string key;
+        GameObject* button;
 
     public:
         GuitarTrack(){ notes = vector<NoteObject*>(); }
         string name;
-        int speed = 5;
+        int speed = 6;
 
+        void addNewNoteAtTick(int tick);
         void addNewNoteAtTop();
         void setupKeyAndPosition(string key, int pos);
         void render();
