@@ -3,6 +3,7 @@
 
 #include "Scene.hpp"
 #include "GameObject.hpp"
+#include "GuitarTrack.hpp"
 #include <vector>
 
 using std::vector;
@@ -10,6 +11,8 @@ using std::vector;
 class SceneGuitar : public Scene{
 
     private:
+        vector<GuitarTrack*> tracks;
+        
         int ticks;
         void createNewNoteAtTop();
 
