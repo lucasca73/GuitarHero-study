@@ -71,12 +71,14 @@ void GuitarTrack::update(){
             // note touched is inside touchZone range
             if ( touchZone < touchRange ){
                 e_obj->gotHitted();
+                score->hitNote();
             }
         }
 
         //note passed away
         if (e_obj->y > touchLimit){
             e_obj->gotMissed();
+            score->missNote();
             //remove obj from vector
         }
     }

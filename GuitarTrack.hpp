@@ -6,6 +6,8 @@
 #include <string>
 #include <vector>
 
+#include "HudScore.hpp"
+
 using std::string;
 
 class GuitarTrack : public GameObject{
@@ -20,6 +22,7 @@ class GuitarTrack : public GameObject{
         GuitarTrack(){ notes = vector<NoteObject*>(); }
         string name;
         int speed = 6;
+        HudScore *score;
 
         void addNewNoteAtTick(int tick);
         void addNewNoteAtTop();

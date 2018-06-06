@@ -8,6 +8,8 @@
 #include "CutiaSDL.hpp"
 #include "BackgroundRoller.hpp"
 #include "Audio.hpp"
+#include "Text.hpp"
+#include "HudScore.hpp"
 
 #include "MidiFile.h"
 #include <iostream>
@@ -16,6 +18,14 @@ using namespace smf;
 
 
 void SceneGuitar::setup(){
+
+    //Creating score
+    HudScore* score = new HudScore();
+    score->setup();
+
+    score->hitNote();
+    
+    objs.push_back(score);
 
     //Creating backgroundRoller
     BackgroundRoller* bgRoller = new BackgroundRoller();
@@ -34,6 +44,8 @@ void SceneGuitar::setup(){
 
         objs.push_back(track);
         tracks.push_back(track);
+
+        track->score = score;
     }
 
     setupNotes("Scorpions.mid");
